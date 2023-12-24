@@ -1,0 +1,145 @@
+﻿@model User
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Page</title>
+    <!-- Add your CSS styles or link to external stylesheets here -->
+    @{
+        ViewData["Title"] = "Main Interface";
+    }
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"]</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+
+
+
+
+
+
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #3494e6, #ec6ead);
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            max-width: 300px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 20px auto;
+            padding: 20px;
+            color: #333;
+        }
+
+            .card h2 {
+                color: #333;
+                margin-bottom: 15px;
+            }
+
+            .card p {
+                color: #666;
+                margin-bottom: 20px;
+            }
+
+            .card a {
+                display: block;
+                padding: 10px;
+                background-color: #4caf50;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                transition: background-color 0.3s;
+                margin-bottom: 10px; /* Added margin to space the links */
+            }
+
+                .card a:hover {
+                    background-color: #45a049;
+                }
+
+        /* Logout button style */
+        .logout-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+            .logout-button a {
+                color: #fff;
+                font-weight: bold;
+                text-decoration: none;
+                transition: opacity 0.3s;
+            }
+
+                .logout-button a:hover {
+                    opacity: 0.8;
+                }
+    </style>
+
+
+    <style>
+
+        .logout-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+            .logout-button a {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #4caf50;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                transition: background-color 0.3s;
+            }
+
+                .logout-button a:hover {
+                    background-color: #45a049;
+                }
+    </style>
+
+</head>
+
+<body>
+    <div class="logout-button">
+        <a href="https://localhost:44350/">Logout</a>
+
+    </div>
+
+    <h1>Welcome, Doctor!</h1>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4 text-center">
+                <div class="card">
+                    <h2>Doctor</h2>
+                    <p>Hello, @User.Identity.Name</p>
+                    <a href="/Exams/Exams">Create Exams</a> 
+                   @*  <a href="/CRUD">Manage</a> *@
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

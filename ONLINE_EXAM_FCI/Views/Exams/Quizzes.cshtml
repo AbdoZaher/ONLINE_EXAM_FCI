@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Choice Exam</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Multi-Choice Exam</h1>
+        <form id="examForm">
+            <label for="examName">Exam Name:</label>
+            <input type="text" id="examName" name="examName">
+
+            <label for="numQuestions">Number of Questions:</label>
+            <input type="number" id="numQuestions" name="numQuestions">
+
+            <label for="examDuration">Exam Duration (minutes):</label>
+            <input type="number" id="examDuration" name="examDuration" min="1">
+
+            <label for="questions">Exam Questions:</label>
+            <textarea id="questions" name="questions" rows="4" placeholder="Enter questions, one per line"></textarea>
+
+            <label for="choices">Choices (comma-separated):</label>
+            <textarea id="choices" name="choices" rows="4" placeholder="Enter choices, separated by commas"></textarea>
+
+            <label for="correctChoice">Correct Choice (1-4):</label>
+            <input type="number" id="correctChoice" name="correctChoice" min="1" max="4">
+
+            <button type="button" onclick="addQuestion()">Add Question</button>
+            <button type="button" onclick="submitExam()">Submit Exam</button>
+        </form>
+    </div>
+
+    <script>
+        function addQuestion() {
+            var questionsTextArea = document.getElementById("questions");
+            var choicesTextArea = document.getElementById("choices");
+
+            var questionNumber = questionsTextArea.value.split('\n').length;
+            var newQuestion = "Question " + questionNumber + ": " + questionsTextArea.value.trim();
+
+            var choiceNumber = choicesTextArea.value.split(',').length;
+            var newChoices = "Choices " + choiceNumber + ": " + choicesTextArea.value.trim();
+
+            questionsTextArea.value = (questionsTextArea.value === "") ? newQuestion : questionsTextArea.value + '\n' + newQuestion;
+            choicesTextArea.value = (choicesTextArea.value === "") ? newChoices : choicesTextArea.value + '\n' + newChoices;
+        }
+
+        function submitExam() {
+            var examForm = document.getElementById("examForm");
+            // Implement the logic to submit the exam data to the server or store it in the database
+            // You can use Ajax or any other method to send the data to the server
+            // For simplicity, the logic is left for you to implement
+        }
+    </script>
+</body>
+</html>

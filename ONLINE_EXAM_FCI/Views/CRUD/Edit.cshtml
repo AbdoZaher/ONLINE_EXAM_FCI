@@ -1,0 +1,18 @@
+﻿@model ONLINE_EXAM_FCI.Models.Exam
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="ExId" />
+    <div class="form-group">
+        <label asp-for="ExSubject"></label>
+        <input asp-for="ExSubject" class="form-control" />
+        <span asp-validation-for="ExSubject" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EXDuration"></label>
+        <input asp-for="EXDuration" class="form-control" />
+        <span asp-validation-for="EXDuration" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

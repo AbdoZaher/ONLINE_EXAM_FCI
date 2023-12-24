@@ -1,0 +1,231 @@
+﻿@* @model ONLINE_EXAM_FCI.Models.Exam
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="ExSubject"></label>
+        <input asp-for="ExSubject" class="form-control" />
+        <span asp-validation-for="ExSubject" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EXDuration"></label>
+        <input asp-for="EXDuration" class="form-control" />
+        <span asp-validation-for="EXDuration" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+ *@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exam Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        .success-message {
+            color: #4caf50;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Exam Tracker</h1>
+        <form id="examForm">
+            <label for="examName">Exam Name:</label>
+            <input type="text" id="examName" name="examName">
+
+            <label for="numQuestions">Number of Questions:</label>
+            <input type="number" id="numQuestions" name="numQuestions">
+
+            <label for="examDuration">Exam Duration (minutes):</label>
+            <input type="number" id="examDuration" name="examDuration" min="1">
+
+            <button type="button" onclick="addQuestions()">Add Questions</button>
+        </form>
+
+        <div id="questionsContainer"></div>
+
+        <button type="button" onclick="submitExam()">Submit Exam</button>
+
+        <h2>Student Scores</h2>
+        <table id="scoresTable">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody id="scoresBody">
+            </tbody>
+        </table>
+
+        <div id="successMessage" class="success-message"></div>
+    </div>
+
+    <script>
+        function addQuestions() {
+            var numQuestions = parseInt(document.getElementById("numQuestions").value);
+
+            // Ensure the minimum number of questions is 1
+            if (numQuestions < 1) {
+                alert("Minimum number of questions is 1.");
+                return;
+            }
+
+            var questionsContainer = document.getElementById("questionsContainer");
+            questionsContainer.innerHTML = "";
+
+            for (var i = 0; i < numQuestions; i++) {
+                var questionNumber = i + 1;
+
+                var questionDiv = document.createElement("div");
+                questionDiv.style.marginBottom = "20px";
+
+                var questionLabel = document.createElement("label");
+                questionLabel.innerHTML = "Question " + questionNumber + ":";
+                questionDiv.appendChild(questionLabel);
+
+                var questionInput = document.createElement("input");
+                questionInput.type = "text";
+                questionInput.name = "question" + questionNumber;
+                questionDiv.appendChild(questionInput);
+
+                for (var j = 0; j < 4; j++) {
+                    var choiceLabel = document.createElement("label");
+                    choiceLabel.innerHTML = "Choice " + (j + 1) + ":";
+                    choiceLabel.style.display = "block";
+                    questionDiv.appendChild(choiceLabel);
+
+                    var choiceInput = document.createElement("input");
+                    choiceInput.type = "text";
+                    choiceInput.name = "question" + questionNumber + "Choice" + (j + 1);
+                    choiceInput.style.marginBottom = "5px";
+                    questionDiv.appendChild(choiceInput);
+                }
+
+                var correctChoiceLabel = document.createElement("label");
+                correctChoiceLabel.innerHTML = "Correct Choice (1-4):";
+                questionDiv.appendChild(correctChoiceLabel);
+
+                var correctChoiceInput = document.createElement("input");
+                correctChoiceInput.type = "number";
+                correctChoiceInput.min = "1";
+                correctChoiceInput.max = "4";
+                correctChoiceInput.name = "question" + questionNumber + "CorrectChoice";
+                questionDiv.appendChild(correctChoiceInput);
+
+                questionsContainer.appendChild(questionDiv);
+            }
+        }
+
+        function submitExam() {
+            var examForm = document.getElementById("examForm");
+            var scoresTable = document.getElementById("scoresTable");
+            var scoresBody = document.getElementById("scoresBody");
+            var successMessage = document.getElementById("successMessage");
+            var formData = new FormData(examForm);
+
+            var studentName = formData.get("examName");
+            var numQuestions = parseInt(formData.get("numQuestions"));
+            var examDuration = parseInt(formData.get("examDuration"));
+
+            var totalScore = 0;
+            var correctAnswers = 0;
+
+            for (var i = 0; i < numQuestions; i++) {
+                var questionNumber = i + 1;
+                var selectedChoice = parseInt(formData.get("question" + questionNumber + "CorrectChoice"));
+
+                if (selectedChoice) {
+                    var choiceInput = document.querySelector('input[name="question' + questionNumber + 'Choice' + selectedChoice + '"]');
+                    var choice = choiceInput.value;
+
+                    if (choice) {
+                        correctAnswers++;
+                        totalScore++;
+                    }
+                }
+            }
+
+            var row = scoresBody.insertRow();
+            var nameCell = row.insertCell();
+            var scoreCell = row.insertCell();
+
+            nameCell.innerHTML = studentName;
+            scoreCell.innerHTML = totalScore;
+
+            successMessage.innerHTML = "Exam submitted successfully. Total score: " + totalScore + ", Correct answers: " + correctAnswers;
+            successMessage.style.display = "block";
+
+            // Reset the form
+            examForm.reset();
+            addQuestions();
+        }
+    </script>
+</body>
+</html>

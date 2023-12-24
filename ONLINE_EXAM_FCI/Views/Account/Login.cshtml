@@ -1,0 +1,56 @@
+﻿
+
+@model ONLINE_EXAM_FCI.Models.User
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1>Login</h1>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form method="post" class="needs-validation" novalidate>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input type="text" asp-for="Email" class="form-control" required />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label">Password:</label>
+                    <input type="password" asp-for="Password" class="form-control" required />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <br />
+
+              
+              
+                <div class="form-group">
+                    <input class="btn btn-outline-success float-right" type="submit" value="Log in" />
+                    <a class="btn btn-outline-danger" asp-controller="Home" asp-action="Index">Cancel</a>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-6 offset-md-3">
+            <p>Don't have an account? <a asp-action="Register">Create Account</a></p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

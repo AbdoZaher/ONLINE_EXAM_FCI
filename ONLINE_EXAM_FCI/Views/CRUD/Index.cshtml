@@ -1,0 +1,38 @@
+﻿@model List<ONLINE_EXAM_FCI.Models.Exam>
+
+<h2>Exams</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().ExSubject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().EXDuration)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExSubject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EXDuration)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ExId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ExId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,12 @@
+﻿@model ONLINE_EXAM_FCI.Models.User
+
+<h2>Delete</h2>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <p>Are you sure you want to delete this user?</p>
+    <div>
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</form>

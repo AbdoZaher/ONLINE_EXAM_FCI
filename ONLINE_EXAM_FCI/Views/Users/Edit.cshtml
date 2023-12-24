@@ -1,0 +1,38 @@
+﻿@model ONLINE_EXAM_FCI.Models.User
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" class="form-control" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PasswordConfirmed"></label>
+        <input asp-for="PasswordConfirmed" class="form-control" />
+        <span asp-validation-for="PasswordConfirmed" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="photo"></label>
+        <input asp-for="photo" class="form-control" />
+        <span asp-validation-for="photo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RoleID"></label>
+        <input asp-for="RoleID" class="form-control" />
+        <span asp-validation-for="RoleID" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

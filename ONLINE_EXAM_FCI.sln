@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34221.43
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ONLINE_EXAM_FCI", "ONLINE_EXAM_FCI\ONLINE_EXAM_FCI.csproj", "{8455D53A-4F31-439F-81B8-D676ECA28735}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8455D53A-4F31-439F-81B8-D676ECA28735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8455D53A-4F31-439F-81B8-D676ECA28735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8455D53A-4F31-439F-81B8-D676ECA28735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8455D53A-4F31-439F-81B8-D676ECA28735}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B5BDD33C-B83A-4870-A3B1-7C1A8640962C}
+	EndGlobalSection
+EndGlobal

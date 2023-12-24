@@ -1,0 +1,35 @@
+﻿@model IEnumerable<User>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Items View</h1>
+
+<table class="table table-bordered table-striped" style="width:100%" >
+    <thead>
+        <tr>
+            <th>
+                Item Name
+            </th>
+            <th>
+                Item Email
+            </th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td width="50%">
+                    @item.UserName
+                </td>
+                <td width="100%">
+                    @item.Email
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
